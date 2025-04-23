@@ -43,11 +43,7 @@ pub fn build(b: *std.Build) void {
         .NANOARROW_NAMESPACE_DEFINE = "",
     });
     lib.addConfigHeader(config);
-    lib.installHeader(upstream.path("src/nanoarrow/nanoarrow.h"), "nanoarrow/nanoarrow.h");
-    lib.installHeader(upstream.path("src/nanoarrow/nanoarrow_config.h"), "nanoarrow/nanoarrow_config.h");
-    lib.installHeader(upstream.path("src/nanoarrow/common/inline_array.h"), "nanoarrow/common/inline_array.h");
-    lib.installHeader(upstream.path("src/nanoarrow/common/inline_buffer.h"), "nanoarrow/common/inline_buffer.h");
-    lib.installHeader(upstream.path("src/nanoarrow/common/inline_types.h"), "nanoarrow/common/inline_types.h");
+    lib.installHeadersDirectory(upstream.path("src"), ".", .{});
 
     b.installArtifact(lib);
 }
