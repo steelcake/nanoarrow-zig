@@ -40,7 +40,7 @@ pub fn build(b: *std.Build) void {
         .NANOARROW_VERSION_MINOR = 6,
         .NANOARROW_VERSION_PATCH = 0,
         .NANOARROW_VERSION = "0.6.0",
-        .NANOARROW_NAMESPACE_DEFINE = "#define NANOARROW_NAMESPACE nanoarrow_ns",
+        .NANOARROW_NAMESPACE_DEFINE = "",
     });
     lib.addConfigHeader(config);
     lib.installHeader(upstream.path("src/nanoarrow/nanoarrow.h"), "nanoarrow/nanoarrow.h");
