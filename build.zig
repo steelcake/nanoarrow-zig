@@ -37,9 +37,9 @@ pub fn build(b: *std.Build) void {
         .include_path = "nanoarrow/nanoarrow_config.h",
     }, .{
         .NANOARROW_VERSION_MAJOR = 0,
-        .NANOARROW_VERSION_MINOR = 6,
+        .NANOARROW_VERSION_MINOR = 7,
         .NANOARROW_VERSION_PATCH = 0,
-        .NANOARROW_VERSION = "0.6.0",
+        .NANOARROW_VERSION = "0.7.0",
         .NANOARROW_NAMESPACE_DEFINE = "",
     });
     lib.addConfigHeader(config);
@@ -50,4 +50,32 @@ pub fn build(b: *std.Build) void {
     lib.installHeader(upstream.path("src/nanoarrow/common/inline_types.h"), "nanoarrow/common/inline_types.h");
 
     b.installArtifact(lib);
+
+    const validate_sys_mod = b.createModule(.{
+        .target = target,
+        .optimize = optimize,
+        .link_libc = true,
+    });
+    validate_sys_mod.addCSourceFiles(.{
+        .root = b.path("validate_sys"),
+        .files = &[_][]const u8{
+            "validate.c",
+        },
+    });
+    validate_sys_mod.linkLibrary(lib);
+
+    const validate_sys = b.addLibrary(.{
+        .linkage = .static,
+        .name = "nanoarrowzig_validate",
+        .root_module = validate_sys_mod,
+    });
+
+    b.installArtifact(validate_sys);
+
+    const validate = b.addModule("validate", .{
+        .root_source_file = b.path("validate/root.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+    validate.linkLibrary(validate_sys);
 }
