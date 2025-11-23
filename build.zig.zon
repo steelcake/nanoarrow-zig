@@ -12,5 +12,10 @@
     .paths = .{
         "build.zig",
         "build.zig.zon",
+        "validate_sys",
+        "validate",
+        "LICENSE-MIT",
+        "LICENSE-APACHE",
+        "README.md",
     },
 }
