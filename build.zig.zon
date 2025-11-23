@@ -5,8 +5,8 @@
     .minimum_zig_version = "0.15.0-dev.197+155b34ba0",
     .dependencies = .{
         .upstream = .{
-            .url = "https://github.com/apache/arrow-nanoarrow/archive/refs/tags/apache-arrow-nanoarrow-0.6.0.tar.gz",
-            .hash = "N-V-__8AALvfSgAjcuZrvUc0m9d-Wwa3vE945WmqRFYxlDjH",
+            .url = "https://github.com/apache/arrow-nanoarrow/archive/refs/tags/apache-arrow-nanoarrow-0.7.0.tar.gz",
+            .hash = "N-V-__8AACT9TQAZCuROI0EwzFeSgCjdzFVymTG8JnZudV6_",
         },
     },
     .paths = .{
